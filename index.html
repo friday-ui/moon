@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Growing Flowers with Moon and Stars</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+            position: relative;
+        }
+        .moon {
+            position: absolute;
+            top: 50px;
+            left: 70%;
+            width: 80px;
+            height: 80px;
+            background-color: yellow;
+            border-radius: 50%;
+            box-shadow: 0 0 20px yellow;
+        }
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: twinkle 1.5s infinite alternate;
+        }
+        @keyframes twinkle {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+        .flower {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: grow 4s infinite alternate;
+        }
+        .stem {
+            width: 10px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background-color: pink;
+            border-radius: 50%;
+            box-shadow: 0 0 10px pink;
+        }
+        .petal:nth-child(1) { top: -30px; left: 10px; }
+        .petal:nth-child(2) { top: -30px; left: -10px; }
+        .petal:nth-child(3) { top: -10px; left: -25px; transform: rotate(45deg); }
+        .petal:nth-child(4) { top: -10px; left: 25px; transform: rotate(-45deg); }
+        .center {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: yellow;
+            border-radius: 50%;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px yellow;
+        }
+        @keyframes grow {
+            from { transform: scale(0.8); }
+            to { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="moon"></div>
+    
+    <!-- Stars -->
+    <script>
+        for(let i = 0; i < 20; i++) {
+            let star = document.createElement("div");
+            star.classList.add("star");
+            star.style.top = Math.random() * window.innerHeight + "px";
+            star.style.left = Math.random() * window.innerWidth + "px";
+            document.body.appendChild(star);
+        }
+    </script>
+    
+    <!-- Glowing Growing Flower -->
+    <div class="flower">
+        <div class="stem"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+</body>
+</html>
