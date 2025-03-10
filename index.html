@@ -61,10 +61,11 @@
             border-radius: 50%;
             box-shadow: 0 0 10px pink;
         }
-        .petal:nth-child(1) { top: -30px; left: 10px; }
-        .petal:nth-child(2) { top: -30px; left: -10px; }
-        .petal:nth-child(3) { top: -10px; left: -25px; transform: rotate(45deg); }
-        .petal:nth-child(4) { top: -10px; left: 25px; transform: rotate(-45deg); }
+        <ellipse class="petal" cx="100" cy="60" rx="20" ry="30" />
+<ellipse class="petal" cx="100" cy="140" rx="20" ry="30" transform="rotate(180,100,100)" />
+<ellipse class="petal" cx="60" cy="100" rx="20" ry="30" transform="rotate(270,100,100)" />
+<ellipse class="petal" cx="140" cy="100" rx="20" ry="30" transform="rotate(90,100,100)" />
+
         .center {
             position: absolute;
             width: 15px;
