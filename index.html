@@ -3,105 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glowing Flower, Moon & Stars ✨</title>
+    <title>Glowing Flower, Moon & Stars Animation ✨</title>
     <style>
         body {
-            background-color: #000014;
+            background-color: #0a0a23;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             overflow: hidden;
+        }
+
+        .scene {
+            position: relative;
+            width: 300px;
+            height: 300px;
         }
 
         /* Glowing Moon */
         .moon {
-            position: absolute;
-            top: 100px;
-            right: 150px;
             width: 100px;
             height: 100px;
-            background: radial-gradient(circle, #fffacd, #f5deb3);
+            background: radial-gradient(circle, #ffffcc, #ffcc66);
             border-radius: 50%;
-            box-shadow: 0 0 40px #fffacd, 0 0 80px #fffacd;
+            position: absolute;
+            top: 20px;
+            left: 100px;
+            box-shadow: 0 0 30px #ffcc66;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px #ffcc66; }
+            100% { box-shadow: 0 0 50px #ffcc66; }
         }
 
         /* Stars */
         .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 5px;
+            height: 5px;
             background: white;
             border-radius: 50%;
+            position: absolute;
             animation: twinkle 2s infinite alternate;
         }
 
+        .star:nth-child(1) { top: 10px; left: 30px; animation-delay: 0s; }
+        .star:nth-child(2) { top: 50px; left: 200px; animation-delay: 0.5s; }
+        .star:nth-child(3) { top: 100px; left: 250px; animation-delay: 1s; }
+        .star:nth-child(4) { top: 200px; left: 50px; animation-delay: 1.5s; }
+
         @keyframes twinkle {
-            from { opacity: 0.3; }
-            to { opacity: 1; }
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Glowing Flower (Simple shape) */
+        /* Glowing Flower */
         .flower {
             position: absolute;
-            bottom: 100px;
+            bottom: 30px;
             left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
+            transform: translateX(-50%) rotate(0deg);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
         }
 
         .petal {
-            position: absolute;
-            width: 30px;
-            height: 60px;
+            width: 40px;
+            height: 80px;
             background: radial-gradient(circle, pink, hotpink);
-            border-radius: 50%;
-            top: 20px;
-            left: 35px;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 0;
+            left: 50%;
             transform-origin: bottom center;
-            box-shadow: 0 0 20px pink;
+            box-shadow: 0 0 15px hotpink;
+            animation: petalPulse 2s infinite alternate;
         }
 
-        .petal:nth-child(1) { transform: rotate(0deg); }
-        .petal:nth-child(2) { transform: rotate(72deg); }
-        .petal:nth-child(3) { transform: rotate(144deg); }
-        .petal:nth-child(4) { transform: rotate(216deg); }
-        .petal:nth-child(5) { transform: rotate(288deg); }
+        .petal:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+        .petal:nth-child(2) { transform: translateX(-50%) rotate(72deg); }
+        .petal:nth-child(3) { transform: translateX(-50%) rotate(144deg); }
+        .petal:nth-child(4) { transform: translateX(-50%) rotate(216deg); }
+        .petal:nth-child(5) { transform: translateX(-50%) rotate(288deg); }
 
-        .flower-center {
+        @keyframes petalPulse {
+            0% { transform: scale(1) rotate(var(--angle)); opacity: 1; }
+            100% { transform: scale(1.1) rotate(var(--angle)); opacity: 0.9; }
+        }
+
+        /* Flower Center */
+        .center {
             width: 30px;
             height: 30px;
             background: yellow;
             border-radius: 50%;
             position: absolute;
-            top: 35px;
-            left: 35px;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
             box-shadow: 0 0 20px yellow;
+            animation: glowCenter 1.5s infinite alternate;
         }
+
+        @keyframes glowCenter {
+            0% { box-shadow: 0 0 10px yellow; }
+            100% { box-shadow: 0 0 30px yellow; }
+        }
+
     </style>
 </head>
 <body>
-
-    <div class="moon"></div>
-
-    <!-- Create random stars -->
-    <script>
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.animationDuration = (1 + Math.random() * 2) + 's';
-            document.body.appendChild(star);
-        }
-    </script>
-
-    <div class="flower">
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="flower-center"></div>
+    <div class="scene">
+        <div class="moon"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="flower">
+            <div class="petal" style="--angle: 0deg;"></div>
+            <div class="petal" style="--angle: 72deg;"></div>
+            <div class="petal" style="--angle: 144deg;"></div>
+            <div class="petal" style="--angle: 216deg;"></div>
+            <div class="petal" style="--angle: 288deg;"></div>
+            <div class="center"></div>
+        </div>
     </div>
-
 </body>
 </html>
 
